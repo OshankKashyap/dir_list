@@ -14,7 +14,7 @@ class Main:
         else:
             return True
 
-    def show_files(self, path) -> None:
+    def show_files(self, path: str) -> None:
         # Show all the content present in current path
         number = 1
         contents = os.listdir(path)
@@ -30,7 +30,7 @@ class Main:
 
 
 # get the path and check if it is valid or not
-path = input("Enter Path -> ")
+path = sys.argv[1]
 if not os.path.exists(path):
     print(f"{path}: does not exist")
     sys.exit()
