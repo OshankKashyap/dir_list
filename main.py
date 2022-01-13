@@ -30,9 +30,14 @@ class Main:
 
 
 # get the path and check if it is valid or not
-path = sys.argv[1]
+try:
+    path = sys.argv[1]
+except IndexError:
+    print("Path was not provided.")
+    sys.exit()
+
 if not os.path.exists(path):
-    print(f"{path}: does not exist")
+    print(f"PATH: {path}; does not exist")
     sys.exit()
 
 main = Main()
