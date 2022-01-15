@@ -7,12 +7,14 @@ import sys
 class Main:
     def check_hidden(self, file: str) -> bool:
         # Check if the provided file is hidden or not
-        # only for UNIX systems
-
-        if file[0] == ".":
-            return False
-        else:
+        # check if the operating system is nt or posix
+        if os.name == "nt":
             return True
+        elif os.name == "posix":
+            if file[0] == ".":
+                return False
+            else:
+                return True
 
     def show_files(self, path: str) -> None:
         # Show all the content present in current path
@@ -22,6 +24,8 @@ class Main:
         # perform a check for hidden files and only show the un-hidden files and directories
         for content in contents:
             content = os.path.join(path, content)
+            # if sys.platform == "win32":
+
             if (
                 os.path.isfile(content) or os.path.isdir(content)
             ) and self.check_hidden(os.path.basename(content)):
